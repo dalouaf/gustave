@@ -1,0 +1,33 @@
+import axios from 'axios'
+export const register = newUser => {
+    return axios
+    .post('users/register',{
+        first_name: newUser.first_name,
+        last_name: newUser.last_name,
+        adresse: newUser.adresse,
+        tel: newUser.tel,
+        date: newUser.date,
+        horaire_livraison: newUser.horaire_livraison,
+        email: newUser.email,
+        password: newUser.password
+
+    })
+    .then(res =>{
+        console.log("Registred")
+    })
+}
+export const login = user => {
+    return axios
+    .post('users/login',{
+        email: user.email,
+        password: user.password
+    })
+    .then(res =>{
+        localStorage.setItem('usertoken', res.data)
+        return res.data
+
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
